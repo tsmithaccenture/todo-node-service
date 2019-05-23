@@ -3,7 +3,7 @@ jobs:
   build:
     working_directory: ~/todo-node-service
     docker:
-      - image: circleci/node:12.3.1
+      - image: circleci/node:latest
     steps:
       - checkout
       - run:
