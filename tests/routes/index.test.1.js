@@ -6,19 +6,6 @@ var app = require('../../app');
 chai.use(chaiHttp);
 chai.should();
 
-const { index } = require('../../routes/index');
-
-let req = {
-    body: {},
-}
-
-let res = {
-    sendCalledWith: '',
-    send: function(arg) { 
-        this.sendCalledWith = arg;
-    }
-};
-
 describe('index', function() {
     describe("GET /", () => {
         it("should return OK when request is made", (done) => {
