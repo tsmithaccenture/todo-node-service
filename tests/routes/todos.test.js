@@ -52,6 +52,20 @@ describe('GET /:id', () => {
     })
 })
 
+describe('POST /', () => {
+    it('it should create todo item', (done) => {
+        let item = {title: 'Item1', body: 'Cool Body', status: false};
+        chai.request(app)
+            .post('/todos')
+            .send(item)
+            .end((err, res) => {
+                res.should.have.status(200);
+                done();
+            });
+        
+    });
+});
+
 describe('/PUT/:id, todo', () => {
     it('should update the todo item', (done) => {
         let item = new TodoItem({title: "test1", body: "TestBod"})
@@ -75,22 +89,9 @@ describe('/DELETE/:id, todo', () => {
             .delete('/todos/' + item.id)
             .end((err, res) => {
                 res.should.have.status(200);
+                res.body.message.should.eql("Todo successfully deleted");
                 done();
              });
         })
     })
 })
-
-describe('POST /', () => {
-    it('it should create todo item', (done) => {
-        let item = {title: 'Item1', body: 'Cool Body', status: false};
-        chai.request(app)
-            .post('/todos')
-            .send(item)
-            .end((err, res) => {
-                res.should.have.status(200);
-                done();
-            });
-        
-    });
-});
