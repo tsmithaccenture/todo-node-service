@@ -5,7 +5,8 @@ var router = express.Router();
 
 
 router.get('/', getTodos);
-router.get('/:id', getTodosById)
+router.get('/:id', getTodosById);
+router.put('/:id', updateTodo);
 router.post('/', addTodo);
 
 function getTodos(req, res){
@@ -21,6 +22,16 @@ function getTodosById(req, res){
         res.json({
             data: item
         });
+  })
+}
+
+function updateTodo(req, res){
+  TodoModel.findById({_id: req.params.id}, (err, todo) => {
+    if(err) res.send(err);
+    Object.assign(todo, res.body).save((err, todo) => {
+      if(err) res.send(err);
+      res.json({message: "Todo item updated!", todo})
+    })
   })
 }
 

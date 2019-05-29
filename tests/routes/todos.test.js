@@ -16,20 +16,20 @@ before(function (done) {
     })
   })
 
-describe("GET /", () => {
-    it("should return OK when request is made", (done) => {
+describe('GET /', () => {
+    it('should return OK when request is made', (done) => {
         chai.request(app)
-            .get("/todos")
+            .get('/todos')
             .end((err, res) => {
                 res.should.have.status(200);
                 done();
              });
     });
 
-    it("should have a count of one ", (done) => {
+    it('should have a count of one ', (done) => {
         TodoItem.create({title: 'test1', body: 'TestBod'})
         chai.request(app)
-            .get("/todos")
+            .get('/todos')
             .end((err, res) => {
                 res.body.should.have.length(1)
                 done();
@@ -37,9 +37,9 @@ describe("GET /", () => {
     });
 });
 
-describe("GET /:id", () => {
+describe('GET /:id', () => {
 
-    it("should return todoItem", (done) =>{
+    it('should return todoItem', (done) =>{
         let item = new TodoItem({title: 'test1', body: 'TestBod'})
         item.save((err, item) => {
             chai.request(app)
@@ -53,9 +53,26 @@ describe("GET /:id", () => {
     })
 })
 
-describe('/POST todo', () => {
+describe('/PUT/:id, todo', () => {
+    it('should update the todo item', (done) => {
+        let item = new TodoItem({title: "test1", body: "TestBod"})
+        item.save((err, item) => {
+            chai.request(app)
+            .put('/todos/' + item.id)
+            .send({title: "Test Put", body: "Hey it works", status: false})
+            .end((err, res) => {
+                // res.body.should.have.property('title').eql('Test Put');
+                console.log(res)
+                done();
+             });
+        })
+        // console.log(TodoItem.findById(item._id))
+    })
+})
+
+describe('POST /', () => {
     it('it should create todo item', (done) => {
-        let item = {title: "Item1", body: "Cool Body", status: false};
+        let item = {title: 'Item1', body: 'Cool Body', status: false};
         chai.request(app)
             .post('/todos')
             .send(item)
