@@ -4,6 +4,7 @@ jobs:
     working_directory: ~/todo-node-service2
     docker:
       - image: circleci/node:12
+      - image: mongo:3.4
     steps:
       - checkout
       - run:
