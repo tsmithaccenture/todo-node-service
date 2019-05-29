@@ -9,9 +9,8 @@ var TodoItem = require('../../models/todoModel')
 chai.use(chaiHttp);
 chai.should();
 
-before(function (done) {
+beforeEach(function (done) {
     TodoItem.remove({}, (err) => {
-      console.error(err)
       done()
     })
   })
