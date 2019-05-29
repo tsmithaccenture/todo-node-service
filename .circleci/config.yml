@@ -3,12 +3,12 @@ jobs:
   build:
     working_directory: ~/todo-node-service2
     docker:
-      - image: circleci/node:6
+      - image: circleci/node:6.9
     steps:
       - checkout
       - run:
           name: update-npm
-          command: 'sudo npm install -g npm@6'
+          command: 'sudo npm install -g npm@6.9'
       - restore_cache:
           key: dependency-cache-{{ checksum "package.json" }}
       - run:
