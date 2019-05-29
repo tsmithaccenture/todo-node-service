@@ -64,7 +64,20 @@ describe('/PUT/:id, todo', () => {
                 done();
              });
         })
-        // console.log(TodoItem.findById(item._id))
+    })
+})
+
+describe('/DELETE/:id, todo', () => {
+    it('should delete the todo item', (done) => {
+        let item = new TodoItem({title: "test1", body: "TestBod"})
+        item.save((err, item) => {
+            chai.request(app)
+            .delete('/todos/' + item.id)
+            .end((err, res) => {
+                res.should.have.status(200);
+                done();
+             });
+        })
     })
 })
 
