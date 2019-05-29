@@ -25,14 +25,19 @@ function getTodosById(req, res){
   })
 }
 
-function updateTodo(req, res){
-  TodoModel.findById({_id: req.params.id}, (err, todo) => {
-    if(err) res.send(err);
-    Object.assign(todo, res.body).save((err, todo) => {
-      if(err) res.send(err);
-      res.json({message: "Todo item updated!", todo})
+function updateTodo(req, res) {
+  TodoModel.findOneAndUpdate({ _id: req.params.id },
+    {
+      $set:
+      {
+        title: req.body.title,
+        body: req.body.body
+      }
+    },
+    { new: true }, (err, todo) => {
+      if (err) res.send(err);
+      res.json({ message: "Todo item updated!", todo })
     })
-  })
 }
 
 function addTodo(req, res) {

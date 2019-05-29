@@ -11,6 +11,7 @@ var mongoose = require('mongoose');
 
 //Set up default mongoose connection
 const mongoDB = "mongodb://127.0.0.1:27017/local";
+mongoose.set('useFindAndModify', false);
 mongoose.connect(mongoDB, { 
     useNewUrlParser: true })
     .then(function(){

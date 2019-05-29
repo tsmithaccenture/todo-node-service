@@ -10,7 +10,7 @@ chai.use(chaiHttp);
 chai.should();
 
 beforeEach(function (done) {
-    TodoItem.remove({}, (err) => {
+    TodoItem.deleteMany({}, (err) => {
       done()
     })
   })
@@ -60,8 +60,7 @@ describe('/PUT/:id, todo', () => {
             .put('/todos/' + item.id)
             .send({title: "Test Put", body: "Hey it works", status: false})
             .end((err, res) => {
-                // res.body.should.have.property('title').eql('Test Put');
-                console.log("STILL NEEDS ATTENTION! " + res)
+                res.body.todo.should.have.property('title').eql('Test Put');
                 done();
              });
         })
