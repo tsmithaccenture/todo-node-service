@@ -62,7 +62,7 @@ describe('/PUT/:id, todo', () => {
             .send({title: "Test Put", body: "Hey it works", status: false})
             .end((err, res) => {
                 // res.body.should.have.property('title').eql('Test Put');
-                console.log(res)
+                console.log("STILL NEEDS ATTENTION! " + res)
                 done();
              });
         })
