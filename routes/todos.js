@@ -1,5 +1,4 @@
 var express = require('express');
-var app = require('../app');
 var TodoModel = require('../models/todoModel')
 var router = express.Router();
 
