@@ -7,7 +7,7 @@ var Schema = mongoose.Schema;
 var TodoModel = new Schema({
   title: String,
   body: String,
-  status: Boolean, 
+  isComplete: Boolean
 });
 
 // Compile model from schema

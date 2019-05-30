@@ -33,7 +33,7 @@ function updateTodo(req, res) {
       {
         title: req.body.title,
         body: req.body.body,
-        status: req.body.status
+        isComplete: req.body.isComplete
       }
     },
     { new: true }, (err, todo) => {
@@ -56,7 +56,8 @@ function deleteTodo(req, res) {
 function addTodo(req, res) {
   var newItem = new TodoModel({
     title: req.body.title,
-    body: req.body.body
+    body: req.body.body,
+    isComplete: false
   });
 
   newItem.save(function(err) {
